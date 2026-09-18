@@ -1,6 +1,7 @@
 package com.base_alumno.dto;
 
 import com.base_alumno.model.AlumnoModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AlumnoDto {
 
+    @JsonIgnore 
     private Integer id;
     private String matricula;
     private String name;

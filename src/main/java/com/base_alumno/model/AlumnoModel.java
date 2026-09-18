@@ -2,6 +2,7 @@ package com.base_alumno.model;
 
 import com.base_alumno.dto.AlumnoDto;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,11 +24,17 @@ public class AlumnoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name = "matricula", columnDefinition = "varchar(20)")
     private String matricula;
+    @Column(name = "name", columnDefinition = "varchar(80)")
     private String name;
+    @Column(name = "lastname", columnDefinition = "varchar(80)")
     private String lastName;
+    @Column(name = "phone", columnDefinition = "varchar(20)")
     private String phone;
+    @Column(name = "email", columnDefinition = "varchar(80)")
     private String eMail;
+    @Column(name = "address", columnDefinition = "varchar(110)")
     private String address;
 
     public AlumnoDto toDto() {
