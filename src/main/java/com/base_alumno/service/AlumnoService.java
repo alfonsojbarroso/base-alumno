@@ -23,4 +23,8 @@ public class AlumnoService {
         return alumnoRepository.findAll().stream().map(AlumnoModel::toDto).toList();
     }
 
+    public AlumnoDto findById(Integer id) {
+        return alumnoRepository.findById(id).get().toDto();
+    }
+
 }
