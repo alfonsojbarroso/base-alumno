@@ -30,7 +30,7 @@ public class AlumnoService {
 
     public AlumnoRsDto save(AlumnoDto alumnoDto) {
         Integer id = alumnoRepository.save(alumnoDto.toModel()).getId();
-        AlumnoRsDto alumnoRsDto = new AlumnoRsDto("Alumno agregasdo", id);
+        AlumnoRsDto alumnoRsDto = new AlumnoRsDto("Alumno agregado", id);
         return alumnoRsDto;
 
     }

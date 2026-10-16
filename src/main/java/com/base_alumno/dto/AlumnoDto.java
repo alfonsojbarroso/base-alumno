@@ -3,35 +3,25 @@ package com.base_alumno.dto;
 import com.base_alumno.model.AlumnoModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class AlumnoDto {
-
-    @JsonIgnore 
-    private Integer id;
-    private String matricula;
-    private String name;
-    private String lastName;
-    private String phone;
-    private String eMail;
-    private String address;
+public record AlumnoDto(
+        @JsonIgnore Integer id,
+        String matricula,
+        String name,
+        String lastName,
+        String phone,
+        String eMail,
+        String address) {
 
     public AlumnoModel toModel() {
-        return AlumnoModel.builder()
-                .id(this.id)
-                .matricula(this.matricula)
-                .name(this.name)
-                .lastName(this.lastName)
-                .phone(this.phone)
-                .eMail(this.eMail)
-                .address(this.address)
-                .build();
+
+        return new AlumnoModel(
+                this.id,
+                this.matricula,
+                this.name,
+                this.lastName,
+                this.phone,
+                this.eMail,
+                this.address);
+
     }
 }

@@ -8,15 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "alumno")
 public class AlumnoModel {
@@ -37,16 +29,78 @@ public class AlumnoModel {
     @Column(name = "address", columnDefinition = "varchar(110)")
     private String address;
 
+    public AlumnoModel() {
+    }
+
+    public AlumnoModel(Integer id, String matricula, String name, String lastName, String phone, String eMail,
+            String address) {
+        this.id = id;
+        this.matricula = matricula;
+        this.name = name;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.eMail = eMail;
+        this.address = address;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String geteMail() {
+        return eMail;
+    }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public AlumnoDto toDto() {
-        return AlumnoDto.builder()
-                .id(this.id)
-                .matricula(this.matricula)
-                .name(this.name)
-                .lastName(this.lastName)
-                .phone(this.phone)
-                .eMail(this.eMail)
-                .address(this.address)
-                .build();
+        return new AlumnoDto(id, matricula, name, lastName, phone, eMail, address);
     }
 
 }
