@@ -47,24 +47,20 @@ public class PushServiceManager {
 
     public void sendNotificationToAll(String messagePayload) {
         List<PushSubscriptionModel> subscriptions = subscriptionRepository.findAll();
-
         for (PushSubscriptionModel subEntity : subscriptions) {
             try {
-                // Construir el objeto de suscripción que exige la librería de Java
                 nl.martijndwars.webpush.Subscription sub = new nl.martijndwars.webpush.Subscription(
                         subEntity.getEndpoint(),
                         new nl.martijndwars.webpush.Subscription.Keys(
                                 subEntity.getP256dh(),
                                 subEntity.getAuth()));
-
                 Notification notification = new Notification(sub, messagePayload);
-                pushService.send(notification);
-
+                var response = pushService.send(notification);
+                int statusCode = response.getStatusLine().getStatusCode();
+                System.out.println("Respuesta push service -> HTTP " + statusCode);
             } catch (Exception e) {
                 System.err.println("Error al enviar push a la suscripción: " + subEntity.getEndpoint());
                 e.printStackTrace();
-                // Opcional: Si el error indica que la suscripción ya no es válida (ej. 410
-                // Gone), bórrala de la BD.
             }
         }
     }

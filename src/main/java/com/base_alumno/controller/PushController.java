@@ -3,12 +3,14 @@ package com.base_alumno.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.base_alumno.dto.PushSubscriptionDto;
 import com.base_alumno.model.PushSubscriptionModel;
 import com.base_alumno.respository.PushSubscriptionRepository;
 import com.base_alumno.service.PushServiceManager;
 
 @RestController
 @RequestMapping("/api/push")
+@CrossOrigin(origins = { "http://localhost:4173/", "http://127.0.0.1:4173/" })
 public class PushController {
 
     private final PushSubscriptionRepository subscriptionRepository;
@@ -20,8 +22,11 @@ public class PushController {
     }
 
     @PostMapping("/subscribe")
-    public ResponseEntity<String> subscribe(@RequestBody PushSubscriptionModel subscription) {
-        subscriptionRepository.save(subscription);
+    public ResponseEntity<String> subscribe(@RequestBody PushSubscriptionDto subscription) {
+
+        System.out.println(subscription);
+
+        subscriptionRepository.save(subscription.toModel());
         return ResponseEntity.ok("Suscripción guardada exitosamente en el servidor.");
     }
 
