@@ -4,7 +4,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.base_alumno.dto.PushSubscriptionDto;
-import com.base_alumno.model.PushSubscriptionModel;
 import com.base_alumno.respository.PushSubscriptionRepository;
 import com.base_alumno.service.PushServiceManager;
 
